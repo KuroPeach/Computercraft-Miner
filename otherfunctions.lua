@@ -157,11 +157,12 @@ function mine()
 
 	local has_block, data = turtle.inspect()
 	if has_block then
-    if string.find(textutils.serialise(data), "forge:ores") then
-		tryDig()
+		if string.find(textutils.serialise(data), "forge:ores") then
+			tryDig()
 		else
-			return not NoOres
+			if string.find(textutils.serialise(data), "minecraft:logs") then
+				tryDig()
+			end
 		end
 	end
-  
 end
